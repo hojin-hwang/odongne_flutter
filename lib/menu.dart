@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'newEvent.dart';
+//import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 // ignore: must_be_immutable
 class MyMenu extends StatefulWidget {
@@ -43,9 +45,17 @@ class _MyMenuState extends State<MyMenu> {
           ),
           ListTile(
             leading: Icon(Icons.delete),
-            title: Text('Item 2'),
+            title: Text('New Event'),
             selected: _selectedDestination == 1,
-            onTap: () => selectDestination(1),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute<void>(
+                  builder: (BuildContext context) => NewEventEditDialog(),
+                  fullscreenDialog: true,
+                ),
+              );
+            },
           ),
           ListTile(
             leading: Icon(Icons.label),
