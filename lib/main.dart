@@ -20,9 +20,9 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  final String title;
+  final String? title;
 
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, this.title}) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -35,7 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final textTheme = theme.textTheme;
     MyMenu myMenu = MyMenu(textTheme);
     EventCardList tempEventCardList = EventCardList(3);
-    List userEventCardList = tempEventCardList.getEventList();
+    var userEventCardList = tempEventCardList.getEventList();
     //LocationAction myLocationAction = LocationAction();
 
     return Scaffold(
@@ -67,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ]),
       drawer: myMenu,
       body: ListView(
-        children: userEventCardList,
+        children: userEventCardList!,
         padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
       ),
 
