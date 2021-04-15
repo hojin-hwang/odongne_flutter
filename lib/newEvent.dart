@@ -89,8 +89,8 @@ class NewEventEditDialogState extends State<NewEventEditDialog> {
     print("Number of pictures:${imageList.length}");
 
     FormData formData = FormData.fromMap({
-      "files": imageList,
-      "test": "test",
+      "event_img": imageList,
+      "test": "${imageList.length}",
     });
 
     Map<String, dynamic> params = Map();
