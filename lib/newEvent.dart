@@ -73,6 +73,8 @@ class NewEventEditDialogState extends State<NewEventEditDialog> {
   }
 
   uploadImageToServer() async {
+    FormData formData = FormData();
+
     List<MultipartFile> imageList = [];
     String url = "https://www.keepuble.com/keepuble/temp/command-add-test.php";
     for (Asset asset in images) {
@@ -80,23 +82,34 @@ class NewEventEditDialogState extends State<NewEventEditDialog> {
       List<int> imageData = byteData.buffer.asUint8List();
       MultipartFile multipartFile = new MultipartFile.fromBytes(
         imageData,
-        filename: 'load_image',
+        filename: 'new_event_image',
         contentType: MediaType("image", "jpg"),
       );
       imageList.add(multipartFile);
-      // print("Image data: $imageData");
     }
+
     print("Number of pictures:${imageList.length}");
 
-    FormData formData = FormData.fromMap({
-      "event_img": imageList,
+    formData = FormData.fromMap({
+      "files": imageList,
       "test": "${imageList.length}",
+      'names': ['name1', 'name2', 'name3']
+    });
+
+    var formData2 = FormData.fromMap({
+      'name': 'wendux',
+      'age': 25,
+      'files': [
+        await MultipartFile.fromFile('./main.dart', filename: 'text1.txt'),
+        await MultipartFile.fromFile('./menu.dart', filename: 'text2.txt'),
+      ]
     });
 
     Map<String, dynamic> params = Map();
 
     Dio dio = new Dio();
-    var response = await dio.post(url, data: formData, queryParameters: params);
+    var response =
+        await dio.post(url, data: formData2, queryParameters: params);
 
     print(response);
     //Response processing

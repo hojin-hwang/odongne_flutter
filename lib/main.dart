@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'menu.dart';
 import 'event_list.dart';
+import 'alertDialog.dart';
 
 void main() => runApp(MyApp());
 
@@ -43,6 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
         TextButton(
             onPressed: () {
               // Respond to button press
+              AlertDaialog.everSatisfied(context);
             },
             child: Text("성동구 가락동"),
             style: TextButton.styleFrom(
